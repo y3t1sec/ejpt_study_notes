@@ -1,0 +1,3 @@
+I did the free HackerSploit course a couple of years ago, and do HTB on a near daily basis, so I have to admit that I don't feel like I learned much in this chapter. During the lab I was mostly playing with importing the results to metasploit since I think that would be really helpful for the test, but there was still a long way to go.
+
+All in all this really increased my confidence going into the exam. I have put in a lot of work in the last year to improve my red teaming skills and believe that I might be a little over prepared, but am still open to learning a lot. I do need to improve my privesc, so I am looking forward to that chapter.
