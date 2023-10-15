@@ -29,9 +29,14 @@ This is called an echo request, like a RADAR system. Sometimes this is disabled 
 **Tools**
 
 WireShark - Can be used to listen to packets and network traffic. From here you can save a PCAP, and filter (statistics > endpoints)
+
 ARP-SCAN - can be used to sweep ARP broadcasts to listen to discover what is connected (can use MAC to determine device type)
+
 Ping - will let you know if the device is online using ICMP requests will also inform you of the latency which can tell you location
+
 FPing - similar to ping, but can be sent to multiple hosts at one time (you can filter out errors with 2>/dev/null)
+
 Nmap - available on all OS, learned about in active recon chapter 
+
 ZenMap - zenmap is nmap, but with a GUI, it's opensource and free, and available on all OS
 zmap - not discussed in this video, but zmap is a version of nmap, with slightly less functionality, but can run faster.
