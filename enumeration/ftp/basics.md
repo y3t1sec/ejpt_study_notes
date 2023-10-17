@@ -16,3 +16,11 @@ for this lab /usr/share/metasploit-framework/data/wordlists/common_users.txt and
 can also bruteforce with nmap using --script=ftp-brute
 
 
+**Default Bad Configs**
+
+--script=ftp-anon
+
+anonymous ftp login is a common issue. people intimidated by sharing creds securely or don't want to read the docs to set it up right.
+
+
+
