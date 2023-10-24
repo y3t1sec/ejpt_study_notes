@@ -33,3 +33,19 @@ auxiliary/scanner/smb/smb_login
 exploit/windows/smb/psexec ( note : this will trigger antivirus on most systems in the wild )
 
 psexec.py < username >@ip.addr cmd.exe
+
+**MS17-010**
+
+Name given to a collection of exploits was leaked to the public by a group of civilians.
+
+Was also used in the WannaCry ransomware group and impacts multiple versions of windows (windows vista through windows 10)
+
+Microsoft released a patch in March 2017, but it is still viable as thousands of servers are still exploitable.
+
+Toolset to crack: https://github.com/3ndG4me/AutoBlue-MS17-010
+
+Read the docs. Start with shell_prep.sh
+
+
+
+
