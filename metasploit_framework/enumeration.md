@@ -2,6 +2,9 @@ For this we will be primarily utilizing auxiliary modules.
 
 Things like port scanning are especially beneficial for pivoting from a compromised device.
 
+note: the auxiliary/admin modules require credentials.
+
+
 **modules**
 
 search portscan 
@@ -39,3 +42,19 @@ scanner/http/dir_scanner
 auxiliary/scanner/http/files_dir
 auxiliary/scanner/http/http_login
 auxiliary/scanner/http/apache_userdir_enum
+
+**MySQL**
+
+auxiliary/scanner/mysql/mysql_version
+auxiliary/scanner/mysql/mysql_login
+auxiliary/admin/mysql/mysql_enum (requires creds)
+auxiliary/admin/mysql/mysql_sql (reqs creds)
+auxiliary/scanner/mysql/mysql_schemadump
+
+**SSH**
+
+auxiliary/scanner/ssh/ssh_login
+
+**SMTP**
+
+auxiliary/scanner/smtp/smtp_version
