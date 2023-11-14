@@ -15,7 +15,7 @@ search udp_sweep
 
 auxiliary/scanner/discovery/udp_sweep
 
-to add the route to a meterpreter session
+to add the route to a meterpreter session **note: for portscanning you must use scanner/portscan/tcp as db_nmap appears unreliable**
 
 run autoroute -s <ip.addr>
 
