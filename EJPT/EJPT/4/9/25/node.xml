@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="SMB" unique_id="25" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704146184" ts_lastsave="1704146694">
+    <rich_text>Enumeration: </rich_text>
+    <rich_text link="node 6">445 - SMB</rich_text>
+    <rich_text>
+
+Server Message Block is a network file sharing protocol and is used to share files and peripherals ( printers serial ports USB ) between computers on a LAN.
+
+</rich_text>
+    <rich_text weight="heavy">PSEXEC is a telnet replacement (from MS ) that allows you to execute process on remote windows computers using any users creds</rich_text>
+    <rich_text>
+
+SMB uses ports 445 (TCP ) and 139 (NETBIOS)
+
+Samba is the OSS Linux implementation that allows windows systems to access linux shares and devices.
+
+SMB has 2 levels of auth ( user and share authentication )
+
+</rich_text>
+    <rich_text indent="1" style="italic"> - user : users must prove a username and pw to auth with SMB server
+ - share : users must provide pw to access restricted share</rich_text>
+    <rich_text>
+
+How authenticating SMB works:
+ &gt; auth req &gt;
+CLIENT  &lt; encrypt string with user's hash &lt;   SERVER
+        &gt; encrypted string &gt;
+        &lt; access granted &lt;
+
+Auths via SMB
+
+We can use psexec to auth with target ( have to steal credentials to use )
+
+Similar to RDP but there is no GUI
+
+For brute forcing you can use enumeration or common user accoutns ( Administrator , Guest )
+
+**Exploitation**
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">MS17-010 - CVE-2017-0144</rich_text>
+    <rich_text>
+
+Name given to a collection of exploits was leaked to the public by a group of civilians.
+
+Was also used in the WannaCry ransomware group and impacts multiple versions of windows (windows vista through windows 10)
+
+Microsoft released a patch in March 2017, but it is still viable as thousands of servers are still exploitable.
+
+Toolset to crack: </rich_text>
+    <rich_text link="webs https://github.com/3ndG4me/AutoBlue-MS17-010">https://github.com/3ndG4me/AutoBlue-MS17-010</rich_text>
+    <rich_text>
+
+MetaSploit
+
+
+Read the docs. Start with shell_prep.sh
+
+This link contains information about utilizing metasploit for similar exploits:
+</rich_text>
+    <rich_text link="webs https://null-byte.wonderhowto.com/how-to/exploit-eternalblue-windows-server-with-metasploit-0195413/">https://null-byte.wonderhowto.com/how-to/exploit-eternalblue-windows-server-with-metasploit-0195413/</rich_text>
+    <rich_text>
+</rich_text>
+    <codebox char_offset="1040" justification="left" frame_width="682" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap scan -sV -p445 #probably want to use service versioning
+
+#metasploit
+auxiliary/scanner/smb/smb_login
+exploit/windows/smb/psexec #this will trigger antivirus on most systems in the wild
+
+#psexec.py
+psexec.py &lt; username &gt;@ip.addr cmd.exe</codebox>
+    <codebox char_offset="1471" justification="left" frame_width="500" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">search type:auxiliary name:eternalblue #to find all modules
+
+auxiliary/scanner/smb/smb_ms17_010 #to scan if vulnerable
+exploit/windows/smb/ms17_010_eternalblue #to exploit</codebox>
+  </node>
+</cherrytree>

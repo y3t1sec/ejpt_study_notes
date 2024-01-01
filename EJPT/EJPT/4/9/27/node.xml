@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Powershell Empire" unique_id="27" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704148035" ts_lastsave="1704148211">
+    <rich_text>A heavily specialized post exploitation framework for windows
+</rich_text>
+    <rich_text link="webs https://github.com/EmpireProject/Empire/wiki/Quickstart">https://github.com/EmpireProject/Empire/wiki/Quickstart</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://www.bc-security.org/an-introduction-to-starkiller/">https://www.bc-security.org/an-introduction-to-starkiller/</rich_text>
+    <rich_text> ( for gui to make more interactive )
+
+TryHackMe Room: </rich_text>
+    <rich_text link="webs https://tryhackme.com/room/rppsempire">https://tryhackme.com/room/rppsempire</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://tryhackme.com/room/powershell">https://tryhackme.com/room/powershell</rich_text>
+    <rich_text>
+
+</rich_text>
+  </node>
+</cherrytree>

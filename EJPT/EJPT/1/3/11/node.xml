@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="ssh checklist" unique_id="11" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704138923" ts_lastsave="1704138970">
+    <rich_text>What version of SSH are you using?
+Could you find public / private key information?
+Could you enumerate any users?
+Are weak / default credentials being used?</rich_text>
+  </node>
+</cherrytree>

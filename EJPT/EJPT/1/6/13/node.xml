@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="smb checklist" unique_id="13" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704139537" ts_lastsave="1704139860">
+    <rich_text>What SMB protocols are in use?
+Did you scan associated UDP ports?
+Did you check for guest account access?
+DId you discover OS version?
+Did you enumerate users?
+Did you enumerate shares?
+Are weak or default credentials being used?
+Are IPC$ and ADMIN$ accessible?
+Did you browse the shares and exfiltrate data?
+Can you use PSExec?
+Can you authenticate (PTH)
+</rich_text>
+  </node>
+</cherrytree>

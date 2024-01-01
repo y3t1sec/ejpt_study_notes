@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Pivoting" unique_id="29" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704148871" ts_lastsave="1704149137">
+    <rich_text underline="single" weight="heavy">Metasploit</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SSH Tunneling</rich_text>
+    <rich_text>
+If you have compromised the host via SSH, you can use this for tunneling. This is much more stable in my experience than using metasploit
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+
+
+</rich_text>
+    <codebox char_offset="11" justification="left" frame_width="841" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">run autoroute -s ip.addr/24 #allows metasploit to access the subnet
+portfwd add -l 1337 -p 1337 -r 127.0.0.1 #allows attack machine to communicate through a forwarded port</codebox>
+    <codebox char_offset="166" justification="left" frame_width="634" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">sudo ssh -L &lt;local_port&gt;:&lt;remote_host&gt;:&lt;remote_port&gt; -N -f &lt;username&gt;@ip.addr</codebox>
+  </node>
+</cherrytree>

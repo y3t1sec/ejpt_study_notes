@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="kernel exploits" unique_id="22" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704144748" ts_lastsave="1704144941">
+    <rich_text>Escalating your priveleges is the distinguishing factor of a good penetration tester.
+
+Kernel is ths core of an operating system and has complete control over every resource on a system. This is the "translation layer" between the hardware and the software, and organizes the communication between both layers. Kernel exploits on windows will typically target vulns in the windows kernel to execute arbitrary code to run priv system commands.
+
+Windows NT is the kernel that comes with all version of windows, and operates as a traditional kernel. Comes with 2 modes.
+</rich_text>
+    <rich_text indent="1" style="italic"> - user mode : programs and services running in user mode have limited access to resources
+ - kernel mode - has unrestricted access to system resources. Comes with the added functionality of managing devices and system memory.</rich_text>
+    <rich_text>
+
+The process is different based on the version of windows being targeted.
+
+Priv Esc on windows will follow the following
+</rich_text>
+    <rich_text indent="1" style="italic"> - identify kernel vulns
+ - downloading, compiling, and transferring kernel exploits to target system</rich_text>
+    <rich_text>
+
+**Tools**
+
+Windows Exploit Suggester - compares a targets patch levels against microsoft vuln database to detect missing patches and notified the user if public exploits and metasploit modules are available
+
+</rich_text>
+    <rich_text link="webs https://github.com/AonCyberLabs/Windows-Exploit-Suggester">https://github.com/AonCyberLabs/Windows-Exploit-Suggester</rich_text>
+    <rich_text>
+
+ follow the docs when running
+
+Windows-Kernel-Exploits - a collection onf windows exploits sorted by CVE
+
+</rich_text>
+    <rich_text link="webs https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</rich_text>
+    <rich_text>
+
+follow the docs when running
+
+**metasploit**
+
+From the meterpreter shell you can use "</rich_text>
+    <rich_text weight="heavy">getsystem</rich_text>
+    <rich_text>" to attempt to escalate perms
+
+</rich_text>
+    <codebox char_offset="1569" justification="left" frame_width="570" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">post/multi/recon/local_exploit_suggester #will suggest modules to use</codebox>
+  </node>
+</cherrytree>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Footprinting" unique_id="28" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704148315" ts_lastsave="1704148747">
+    <rich_text>Tools
+
+WireShark - Can be used to listen to packets and network traffic. From here you can save a PCAP, and filter (statistics &gt; endpoints)
+
+ARP-SCAN - can be used to sweep ARP broadcasts to listen to discover what is connected (can use MAC to determine device type)
+
+Ping - will let you know if the device is online using ICMP requests will also inform you of the latency which can tell you location
+
+FPing - similar to ping, but can be sent to multiple hosts at one time (you can filter out errors with 2&gt;/dev/null)
+
+Nmap - available on all OS, learned about in active recon chapter
+
+ZenMap - zenmap is nmap, but with a GUI, it's opensource and free, and available on all OS zmap - not discussed in this video, but zmap is a version of nmap, with slightly less functionality, but can run faster.
+
+PortScanning can be used to Identify Operating Systems and accessible services. Doing this is very loud, and will lead to detection, but is allowed in a PenTest
+
+Use footprinting, to establish services, by examining the responses from hosts, and checks against a signature database. Some OS are more obvious than others, and some services will explicitly tell us what OS this is installed on.
+
+If the port is open: syn &gt; syn/ack &gt; ack
+
+If the port is open syn &gt; ack
+
+Nmap includes a stealthy scan. (used to evade IDS) syn &gt; syn/ack &gt; RST
+
+UDP scans are slower, response open|filtered can be sped up by increasing rate (min-rate)
+
+Nmap Automator, can run new scans and continue enumerating further, rustscan is fast and made out of rust, and autorecon which will tell you everthing you can know from scanning.
+
+</rich_text>
+    <rich_text link="webs https://github.com/21y4d/nmapAutomator">https://github.com/21y4d/nmapAutomator</rich_text>
+    <rich_text>
+
+
+
+
+</rich_text>
+    <codebox char_offset="1649" justification="left" frame_width="500" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">./nmapAutomator.sh --host 10.1.1.1 --type All
+./nmapAutomator.sh -H 10.1.1.1 -t Basic
+./nmapAutomator.sh -H academy.htb -t Recon -d 1.1.1.1
+./nmapAutomator.sh -H 10.10.10.10 -t network -s ./nmap</codebox>
+  </node>
+</cherrytree>

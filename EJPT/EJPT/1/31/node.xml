@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="AutoPwn" unique_id="31" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704149863" ts_lastsave="1704149956">
+    <rich_text link="webs https://github.com/hahwul/metasploit-autopwn">https://github.com/hahwul/metasploit-autopwn</rich_text>
+    <rich_text>
+
+</rich_text>
+    <codebox char_offset="46" justification="left" frame_width="500" frame_height="85" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">load db_autopwn
+db_autopwn -h
+#example
+db_autopwn -p -R great -e -q ip.addr
+</codebox>
+  </node>
+</cherrytree>

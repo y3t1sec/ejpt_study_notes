@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="sql checklist" unique_id="14" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704139886" ts_lastsave="1704140733">
+    <rich_text>What version is being used?
+Is an empty password in use?
+Are weak or default credentials being used?
+Can you dump hashes?
+
+Authenticated
+Did you connect to the database?
+Did you dump tables?
+Did you dump hashes?
+Can you start an xp cmd shell?
+Is there any sensitive information contained in the database?
+</rich_text>
+  </node>
+</cherrytree>

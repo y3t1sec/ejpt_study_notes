@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="22 - SSH" unique_id="3" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704060859" ts_lastsave="1704140664">
+    <rich_text>Note: SSH is a pretty secure service, and is pretty hard to configure poorly. It is unlikely that this will be the initial foothold (unless you bruteforce)
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Banner Grabbing</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+	
+</rich_text>
+    <rich_text underline="single" weight="heavy">nmap scripts</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+a list of known bad keys: </rich_text>
+    <rich_text link="webs https://github.com/rapid7/ssh-badkeys/tree/master/authorized">https://github.com/rapid7/ssh-badkeys/tree/master/authorized</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Bruteforcing SSH</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">MetaSploit Modules</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SSH Tunneling</rich_text>
+    <rich_text>
+If you have compromised the host via SSH, you can use this for tunneling. This is much more stable in my experience than using metasploit
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SSH Authorized_Keys</rich_text>
+    <rich_text>
+When a device has been compromised, check the user's home folders for authorized keys. This can allow you to privesc without needing a password
+
+
+</rich_text>
+    <codebox char_offset="173" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nc -vn ip.addr 22</codebox>
+    <codebox char_offset="190" justification="left" frame_width="1257" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 22 ip.addr --script=ssh2-enum-algos #enumerate algorithms used to create key
+nmap -p 22 ip.addr --script=ssh-hostkey --script-args ssh_hostkey=full # Shows the target SSH server's key fingerprint
+nmap -p 22 ip.addr --script=ssh-auth-methods --script-args="ssh.user=username" #can help you identify accounts without creds</codebox>
+    <codebox char_offset="297" justification="left" frame_width="857" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">hydra -L user.txt -P pass.txt ip.addr -V -f ssh #can help you find low hanging fruit</codebox>
+    <codebox char_offset="319" justification="left" frame_width="597" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">auxiliary/scanner/ssh/ssh_version
+auxiliary/scanner/ssh/ssh_login
+scanner/ssh/ssh_enumusers #a timing attack may be possible</codebox>
+    <codebox char_offset="474" justification="left" frame_width="787" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">sudo ssh -L &lt;local_port&gt;:&lt;remote_host&gt;:&lt;remote_port&gt; -N -f &lt;username&gt;@ip.addr</codebox>
+    <codebox char_offset="641" justification="left" frame_width="500" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cat /home/user/.ssh/authorized_keys
+#from attack box
+ssh -i authorized_keys user@ip.addr</codebox>
+  </node>
+</cherrytree>

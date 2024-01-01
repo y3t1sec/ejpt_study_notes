@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="ftp checklist" unique_id="10" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704138836" ts_lastsave="1704138900">
+    <rich_text>Is Anonymous Login Permitted?
+Were weak or default credentials being used?
+Are there known vulnerabilities with the server version?</rich_text>
+  </node>
+</cherrytree>

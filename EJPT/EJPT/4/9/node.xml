@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Windows" unique_id="9" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704137356" ts_lastsave="1704148036">
+    <rich_text underline="single" weight="heavy">system information</rich_text>
+    <rich_text>
+
+Collect info from each category
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Users and Groups</rich_text>
+    <rich_text>
+
+Collect info from each category
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">network information</rich_text>
+    <rich_text>
+
+Collect from each category
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+ 
+</rich_text>
+    <rich_text underline="single" weight="heavy"> services / processes</rich_text>
+    <rich_text>
+
+what are we looking for?
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Meterpreter</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">automation</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://github.com/411Hall/JAWS ">https://github.com/411Hall/JAWS</rich_text>
+    <rich_text link="webs https://github.com/411Hall/JAWS " scale="h3" foreground="#cbdae6"> </rich_text>
+    <rich_text>
+This script is pretty handy as it uses powershell and doesn't require any additional dependencies etc. (post/windows/gather/win_privs) (post/windows/gather/enum_logged_on_users) (post/windows/gather/checkvm) search platform:windows time:post name:enum
+
+</rich_text>
+    <rich_text link="webs https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS">https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS</rich_text>
+    <rich_text>
+This script also runs natively, and goes through the hacktricks checklist. There are three versions, .bat, .ps1, and .exe.
+
+</rich_text>
+    <rich_text link="webs https://github.com/itm4n/PrivescCheck">https://github.com/itm4n/PrivescCheck</rich_text>
+    <rich_text>
+This script aims to identify Local Privilege Escalation (LPE) vulnerabilities that are usually due to Windows configuration issues, or bad practices
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">More Information</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation">https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <codebox char_offset="52" justification="left" frame_width="603" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">#hostname
+sysinfo #meterpreter
+hostname #cmd
+
+#OS Name / Version / architecture
+sysinfo #meterpreter
+systeminfo #cmd
+
+type C:\Windows\System32\eula.txt #will provide full version info
+
+#Installed Updates
+systeminfo #cmd
+wmic /output:\temp\hotfixes.txt qfe list #powershell
+wmic qfe get Caption,Description,HotFixID,InstalledOn #powershell
+
+#Current User
+getuid #meterpreter
+whoami #cmd</codebox>
+    <codebox char_offset="105" justification="left" frame_width="549" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">#current user &amp; privs 
+getprivs #meterpreter
+post/windows/gather/enum_logged_on_users #metasploit module
+whoami /priv #cmd.exe
+query user #cmd / powershell
+
+#additional user information
+query user #cmd / powershell
+net user %username% #cmd
+
+#other users on the system
+post/windows/gather/enum_logged_on_users #metasploit module
+query user #cmd
+net users #cmd
+
+#groups
+net localgroup
+
+#members of the built-in adminsitrator group
+net localgroup administrators #cmd, may require permissions</codebox>
+    <codebox char_offset="156" justification="left" frame_width="558" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">#current IP &amp; NIC
+ipconfig
+
+#internal networks
+ipconfig
+
+#TCP/UDP services running and their respective ports 
+netstat -nao
+
+#Other hosts on the network
+arp -a
+
+#Routing table 
+route print
+
+#Windows Firewall state
+netsh advfirewall show all profiles</codebox>
+    <codebox char_offset="208" justification="left" frame_width="500" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">#running processes and services
+ps #meterpreter
+pgrep #meterpreter
+tasklist /SVC #cmd / poershell
+
+#scheduled tasks
+schtasks /query /fo LIST /v #cmd.exe</codebox>
+    <codebox char_offset="223" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">post/windows/gather/win_privs
+post/windows/gather/enum_logged_on_users
+post/windows/gather/checkvm</codebox>
+  </node>
+</cherrytree>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="WinRM" unique_id="26" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704146744" ts_lastsave="1704146977">
+    <rich_text>windows remote management protol that allows you to remotely administer windows computers over HTTP / HTTPS
+
+Used in the following ways
+
+</rich_text>
+    <rich_text indent="1" style="italic"> - remotely access and interact with windows hosts on local network
+ - remotely access and execute commands
+ - manage and configured windows systems remotely</rich_text>
+    <rich_text>
+
+Runs on ports 5985 and 5986 (HTTPS)
+
+
+Implements access control through various forms (username and password or pwhash)
+
+Crackmapexec can bruteforce winrm to identify users and passwords as well as execute commands on the target system.
+
+We can also use a ruby script called "evil-winrm" to obtain the command shell.
+
+**CrackMapExec**
+
+</rich_text>
+    <rich_text link="webs https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/">https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/</rich_text>
+    <rich_text>
+
+Can be used for mssql, smb, winrm, and SSH
+
+example:
+
+
+**Evil-WinRM**
+
+
+**MetaSploit**
+
+
+In the lab they want to ser force VBS to true although it is not required to run by default.</rich_text>
+    <codebox char_offset="332" justification="left" frame_width="529" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 5985-5986 ip.addr #both ports must be manually specified</codebox>
+    <codebox char_offset="757" justification="left" frame_width="546" frame_height="85" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">crackmapexec winrm ip.addr -u username -p passwordlist.txt
+
+#to run commands
+crackmapexec winrm ip.addr -u username -p password -x "systeminfo"</codebox>
+    <codebox char_offset="775" justification="left" frame_width="634" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">evil-winrm.rb -u username -p password -i ip.addr #only works with credentials</codebox>
+    <codebox char_offset="793" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">exploit/windows/winrm/winrm_script_exec</codebox>
+  </node>
+</cherrytree>

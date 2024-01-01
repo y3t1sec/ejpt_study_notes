@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="25 - SMTP" unique_id="30" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704149231" ts_lastsave="1704149296">
+    <rich_text>**MetaSploit**
+</rich_text>
+    <codebox char_offset="15" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">auxiliary/scanner/smtp/smtp_version</codebox>
+  </node>
+</cherrytree>

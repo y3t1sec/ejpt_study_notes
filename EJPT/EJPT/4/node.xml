@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Post Exploitation" unique_id="4" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="#ff0000" ts_creation="1704062614" ts_lastsave="1704148871">
+    <rich_text underline="single" weight="heavy">Methodology</rich_text>
+    <rich_text>
+
+1. Local Enumeration
+2. Transferring Files
+3. Upgrading Shells
+4. Privilege Escalation
+5. Persistence
+6. Dumping &amp; Cracking Hashes
+7. Pivoting
+8. Clearing Tracks
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Upgrading Shells</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SSH Authorized_Keys</rich_text>
+    <rich_text>
+When a device has been compromised, check the user's home folders for authorized keys. This can allow you to privesc without needing a password
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Review the enumeration for each service again with the credentials you now have.
+
+Linux Enumeration</rich_text>
+    <codebox char_offset="193" justification="left" frame_width="1305" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">/bin/bash -i #for systems with bourne again shell
+/bin/sh -i #for systems with bourne shell
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #add a command to env
+#further config steps:
+export TERM=xterm
+export SHELL=bash
+
+#for systems with python
+python --version #discover python version
+python -c 'import pty; pty.spawn("/bin/bash")' #utilizes python to initiate a shell
+
+#for systems with perl
+perl -e 'exec "/bin/bash";'
+perl: exec "/bin/bash";
+
+#best way to escalate to a full TTY
+script /dev/null -c bash
+#CTRL+Z
+stty raw -echo; fg #hit enter twice
+
+#meterpreter
+sessions -u 1</codebox>
+    <codebox char_offset="360" justification="left" frame_width="500" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">cat /home/user/.ssh/authorized_keys
+#from attack box
+ssh -i authorized_keys user@ip.addr</codebox>
+  </node>
+</cherrytree>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="80/443 - HTTP" unique_id="5" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704062702" ts_lastsave="1704150082">
+    <rich_text underline="single" weight="heavy">Directory Enumeration</rich_text>
+    <rich_text>
+
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Version Detection</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Nmap Scripts</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">MetaSploit</rich_text>
+    <rich_text>
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Browsing</rich_text>
+    <rich_text>
+Always browse the pages and </rich_text>
+    <rich_text style="italic">Right-Click &gt; View Source</rich_text>
+    <rich_text>. In a lot of the recommended CTFs people have put silly things in the comments. I also recommend utilizing burp suite to log the infomation when browsing the webpage.
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Scanning</rich_text>
+    <rich_text>
+Use OWASP Zap to scan the website, spider webpages, and identify potential vulnerabilities. They should also provide details links about what the vulnerabilities mean.
+
+**wmap**
+
+
+If you're really stuck:
+</rich_text>
+    <rich_text link="webs https://book.hacktricks.xyz/network-services-pentesting/pentesting-web">https://book.hacktricks.xyz/network-services-pentesting/pentesting-web</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://github.com/neilmadhava/EJPTv2-Notes/blob/main/Information%20Gathering%20and%20Enumeration/HTTP.md">https://github.com/neilmadhava/EJPTv2-Notes/blob/main/Information%20Gathering%20and%20Enumeration/HTTP.md</rich_text>
+    <codebox char_offset="23" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">dirb ip.addr
+gobuster -w /directory-list.txt -u ip.addr #isn't recursive</codebox>
+    <codebox char_offset="44" justification="left" frame_width="500" frame_height="70" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nikto -h ip.addr
+whatweb ip.addr
+browsh --startup-url http://ip.addr</codebox>
+    <codebox char_offset="60" justification="left" frame_width="1729" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 80,443 --script=http-enum #discover interesting dirs like webdav
+nmap -p 80,443 --script=http-headers #server header info
+nmap -p 80,443 --script=banner #pulls http server banner information
+nmap -p 80,443 --script=http-webdav-scan --script-args http-methods.url-path=/webdav/ #Running webdav scan Nmap script to identify WebDAV installations the script uses the OPTIONS and PROPFIND methods to detect it.
+nmap -p 80,443 --script=http-methods --script-args http-methods.url-path=/webdav/ #check for allowed methods, should be run on all found pages
+nmap -p 80,443 --script=http-shellshock --script-args “http-shellshock.uri=/gettime.cgi" #attempts to exploit shellshock</codebox>
+    <codebox char_offset="74" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">auxiliary/scanner/http/http_version
+auxiliary/scanner/http/brute_dirs #dirb alt
+auxiliary/scanner/http/robots_txt
+auxiliary/scanner/http/apache_userdir_enum
+auxiliary/scanner/http/brute_dirs
+auxiliary/scanner/http/dir_scanner
+auxiliary/scanner/http/dir_listing
+auxiliary/scanner/http/http_put
+auxiliary/scanner/http/files_dir
+auxiliary/scanner/http/http_login
+auxiliary/scanner/http/http_header
+exploit/windows/http/badblue_passthru
+searchsploit badblue 2.7</codebox>
+    <codebox char_offset="495" justification="left" frame_width="500" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">wmap_sites -a ip.addr
+wmap_sites -t http://ip.addr
+
+wmap_run -t #to load all modules 
+wmap_run -e #to scan with all modules in profile
+wmap_vulns #will list the discovered vulnerabilities</codebox>
+  </node>
+</cherrytree>

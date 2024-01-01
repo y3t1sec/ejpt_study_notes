@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="1433, 3306 - SQL" unique_id="7" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704067120" ts_lastsave="1704139886">
+    <rich_text underline="single" weight="heavy">Nmap Scripts</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">MetaSploit</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Query CheatSheets</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text link="webs https://learnsql.com/blog/sql-basics-cheat-sheet/">https://learnsql.com/blog/sql-basics-cheat-sheet/</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://www.w3schools.com/sql/sql_quickref.asp">https://www.w3schools.com/sql/sql_quickref.asp</rich_text>
+    <rich_text>
+
+mysql -u user -h ip.addr
+login
+show database
+use database
+show tables
+select load_file ("file/name");
+
+
+
+</rich_text>
+    <codebox char_offset="14" justification="left" frame_width="1602" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 3306,1433 ip.addr --script=ms-sql-info
+nmap -p 3306,1433 ip.addr --script=ms-sql-ntlm-info --script-args=mssql.instance=port=1433
+nmap -p 3306,1433 ip.addr --script=ms-sql-brute --script-args userdb=file,passdb=file #bruteforce
+nmap -p 3306,1433 ip.addr --script=ms-sql-empty-password
+nmap -p 3306,1433 ip.addr --script=ms-sql-dump-hashes --script-args=mssql.username=user,mssql.password=pass
+
+#With Authentication
+nmap -p 3306,1433 ip.addr --script=mysql-users --script-args="mysql-user='root',mysqlpass='password'"
+nmap -p 3306,1433 ip.addr --script=mysql-databases --script-args="mysql-user='root',mysqlpass='password'"
+nmap -p 3306,1433 ip.addr --script=ms-sql-query --script-args mssql.username=user,mssql.password=pass,ms-sql-query.query="SELECT * FROM QUERY" #only if you want to run a query.
+nmap -p 3306,1433 ip.addr --script=ms-sql-dump-hashes --script-args=mssql.username=user,mssql.password=pass
+nmap -p 3306,1433 ip.addr --script=mysql-variables --script-args="mysql-user='root',mysqlpass='password'"
+nmap -p 3306,1433 ip.addr --script=mysql-audit --script-args="mysqlaudit.username='root',mysqlpass='password',mysqlaudit.filename='/usr/share/nselib/data/mysql-cis.audit'"
+nmap -p 3306,1433 ip.addr --script=ms-sql-xp-cmdshell --script-args="mssql.username=user,mssql.password=pass,ms-sql-xp-cmdshell.cmd=whoami"
+#only will work if xpshell is enabled (very rare)</codebox>
+    <codebox char_offset="29" justification="left" frame_width="692" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">auxiliary/scanner/mssql/mssql_login #to brute force login
+auxiliary/admin/mssql/mssql_enum #enumerate
+auxiliary/admin/mssql/mssql_enum_sql_logins #enumerate only logins
+auxiliary/admin/mssql/mssql_enum_exec #to execute commands
+auxiliary/admin/mssql/mssql_enum #enumerate with creds
+auxiliary/admin/mssql/mssql_enum_domain_accounts #enumerate domain creds
+auxuliary/scanner/mysql/hashdump #dump hashes
+auxiliary/scanner/mysql/mysql_writable_dirs #check for writable directories</codebox>
+  </node>
+</cherrytree>

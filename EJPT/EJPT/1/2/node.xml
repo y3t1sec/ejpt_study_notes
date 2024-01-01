@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="21 - FTP" unique_id="2" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704059877" ts_lastsave="1704149195">
+    <rich_text>
+check if anon login allowed:
+
+	
+bruteforce default logins:
+	
+	
+Active/Passive
+	if you receive an error about being unable to download files due to passive mode being in place simply type 
+
+	
+Connecting to FTP
+	
+	
+Download all FTP files
+	
+
+**Metasploit**
+
+	
+Check searchsploit and google to see if version of FTP has known vulns
+
+More Information:
+
+</rich_text>
+    <rich_text link="webs https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp">https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp</rich_text>
+    <rich_text>
+</rich_text>
+    <rich_text link="webs https://github.com/neilmadhava/EJPTv2-Notes/blob/main/Information%20Gathering%20and%20Enumeration/FTP.md">https://github.com/neilmadhava/EJPTv2-Notes/blob/main/Information%20Gathering%20and%20Enumeration/FTP.md</rich_text>
+    <rich_text>
+
+
+
+
+
+
+</rich_text>
+    <codebox char_offset="30" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 21 &lt;ip.addr&gt; --script=ftp-anon</codebox>
+    <codebox char_offset="62" justification="left" frame_width="617" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">nmap -p 21 &lt;ip.addr&gt; ftp-brute --script-args userdb=/root/users
+hydra -L user.txt -P pass.txt -V -f ip.addr ftp #hydra is better and faster</codebox>
+    <codebox char_offset="191" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">ftp&gt; passive</codebox>
+    <codebox char_offset="214" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">ftp ip.addr
+ftp user@ip.addr</codebox>
+    <codebox char_offset="242" justification="left" frame_width="593" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">wget -m ftp://anonymous:anonymous@10.10.10.98 #Donwload all
+wget -m --no-passive ftp://anonymous:anonymous@10.10.10.98 #Download all</codebox>
+    <codebox char_offset="260" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">search type:auxiliary name:ftp
+auxiliary/scanner/ftp/ftp_login</codebox>
+  </node>
+</cherrytree>

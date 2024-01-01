@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="RDP" unique_id="24" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1704145998" ts_lastsave="1704146157">
+    <rich_text underline="single" weight="heavy">Exploiting RDP</rich_text>
+    <rich_text>
+
+**Metasploit**
+
+
+**hydra to bruteforce**
+
+
+**Connecting from any linux distro**
+
+
+
+</rich_text>
+    <rich_text underline="single" weight="heavy">BlueKeep CVE-2019-0708</rich_text>
+    <rich_text>
+
+Released publicly by MS in 2019. Allows attackers to gain access to a chunck on kernal memory allowing them to remotely execute arbitrary code running at system level priveleges.
+
+Impacts multiple versions of windows from XP to Server 2008 R2. There are multiple illegitimate PoCs. It is recommended to only utilize verified exploit code and modules for exploitation. There is a metasploit module to scan and to exploit the vuln.
+
+NOTE : attempting this specific exploit can lead to a system crash if memory is malformed
+
+from MSFconsole you can search bluekeep to find both relevant modules.
+
+</rich_text>
+    <codebox char_offset="31" justification="left" frame_width="730" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">auxiliary/scanner/rdp/rdp_scanner #helps you identify RDP when running on obfuscated port</codebox>
+    <codebox char_offset="58" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">hydra -l user -p password rdp://ip.addr -s port</codebox>
+    <codebox char_offset="98" justification="left" frame_width="500" frame_height="40" width_in_pixels="1" syntax_highlighting="sh" highlight_brackets="1" show_line_numbers="0">xfreerdp /u:username /p:password /v:ip.addr</codebox>
+  </node>
+</cherrytree>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cherrytree>
+  <node name="Common Services" unique_id="1" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="1" foreground="#2ec27e" ts_creation="1704059712" ts_lastsave="1704149863">
+    <rich_text>This is a list of checklists to use when performing EJPT. A lot of the final mark is based on enumeration, as are many of the questions. This means that although you answer all the questions you will be docked points for not adequately enumerating and finding everything. Having an overall checklist and following it for each service will prevent you from being docked points.
+</rich_text>
+  </node>
+</cherrytree>
