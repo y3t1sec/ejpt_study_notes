@@ -1,7 +1,15 @@
 # ejpt_study_notes
 These are my study notes for the eJPTv2 exam.
 
-I plan to break this down following the eJPT course provided by INE. However, that may change as I use these notes on an ongoing basis.
+Having passed the exam I have made these public to assist other people that are writing the exam. Particularly for people that may have lost their notes.
 
-Why make my notes public you might ask?
-Well, I believe in proof of work. Especially when it comes to learning. I try to document as much as possible whenever I remember to, and I hope that others find this beneficial in the future also :)
+The EJPT/EJPT folder are cherry tree notes. To open them in cherry tree do the following:
+
+1. Open Cherry Tree:
+2. Click File > Open Folder (Shift+Ctrl+O)
+3. Navigate to the folder you downloaded
+4. Click Open
+
+
+**TODO**
+Clean up formatting of the notes to make them more readable in a MD format.
